@@ -1,0 +1,89 @@
+resource url?
+QUESTION ----------------
+A sentence is a string of single-space separated words where each word consists only of lowercase letters.A word is uncommon if it appears exactly once in one of the sentences, and does not appear in the other sentence.Given two sentences s1 and s2, return a list of all the uncommon words. You may return the answer in any order.Example 1:Input: s1 = "this apple is sweet", s2 = "this apple is sour"Output: ["sweet","sour"]Example 2:Input: s1 = "apple apple", s2 = "banana"Output: ["banana"] Constraints:1 <= s1.length, s2.length <= 200s1 and s2 consist of lowercase English letters and spaces.s1 and s2 do not have leading or trailing spaces.All the words in s1 and s2 are separated by a single space.Note:Use dictionary to solve the problem
+------------------ANSWER
+from collections import Counter
+
+first = input().strip().split()
+second = input().strip().split()
+
+total = first + second
+
+counts = Counter(total)
+for word, count in counts.items(): 
+    if count == 1:
+        print(word, end=" ")
+------------------------------
+QUESTION ----------------
+Create a student dictionary  for n students with the student name as key and their test mark assignment mark and lab mark as values. Do the following computations and display the result.1.Identify the student with the  highest average score2.Identify the student who as the highest Assignment marks3.Identify the student with the Lowest lab marks4.Identify the student with the lowest average scoreNote:If more than one student has the same score display all the student namesSample input:4James 67 89 56Lalith 89 45 45Ram 89 89 89Sita 70 70 70Sample Output:RamJames RamLalithLalith
+------------------ANSWER
+from operator import itemgetter
+
+num = int(input())
+
+students = []
+
+for i in range(num):
+    name, test, assgn, lab = input().split(" ")
+    test, assgn, lab = int(test), int(assgn), int(lab)
+    students.append({"name": name, "test": test, "assgn": assgn, "lab": lab, "avg" : (test + assgn + lab) / 3})
+
+def get_names(items, field, comp):
+    return sorted([i["name"] for i in items if i[field] == comp(items, key=itemgetter(field))[field]])
+
+print(*get_names(students, "avg", max))
+print(*get_names(students ,"assgn", max))
+print(*get_names(students, "lab", min))
+print(*get_names(students, "avg", min))
+------------------------------
+QUESTION ----------------
+In the game of Scrabble™, each letter has points associated with it. The total score of a word is the sum of the scores of its letters. More common letters are worth fewer points while less common letters are worth more points. The points associated with each letter are shown below:Points Letters1 A, E, I, L, N, O, R, S, T and U2 D and G3 B, C, M and P4 F, H, V, W and Y5 K8 J and X10 Q and ZWrite a program that computes and displays the Scrabble™ score for a word. Create a dictionary that maps from letters to point values. Then use the dictionary to compute the score.A Scrabble™ board includes some squares that multiply the value of a letter or the value of an entire word. We will ignore these squares in this exercise.Sample InputRECSample OutputREC is worth 5 points.
+------------------ANSWER
+pointsMap = {}
+for i in "aeilnorstu":
+    pointsMap[i] = 1
+for i in "dg":
+    pointsMap[i] = 2
+for i in "bcmp":
+    pointsMap[i] = 3
+for i in "fhvwy":
+    pointsMap[i] = 4
+pointsMap["k"] = 5
+pointsMap["j"] = pointsMap["x"] = 8
+pointsMap["q"] = pointsMap["z"] = 10
+
+word = input()
+score = sum([pointsMap[i] for i in word.lower().strip()])
+print(f"{word} is worth {score} points.")
+------------------------------
+QUESTION ----------------
+Given an array of names of candidates in an election. A candidate name in the array represents a vote cast to the candidate. Print the name of candidates received Max vote. If there is tie, print a lexicographically smaller name.Examples: Input :  votes[] = {"john", "johnny", "jackie",                    "johnny", "john", "jackie",                    "jamie", "jamie", "john",                    "johnny", "jamie", "johnny",                    "john"};Output : JohnWe have four Candidates with name as 'John', 'Johnny', 'jamie', 'jackie'. The candidates John and Johny get maximum votes. Since John is alphabetically smaller, we print it. Use dictionary to solve the above problem Sample Input:10JohnJohnJohnyJamieJamieJohnyJackJohnyJohnyJackie Sample Output:Johny
+------------------ANSWER
+from collections import Counter
+
+names = []
+
+n = int(input())
+for i in range(n):
+    names += [input().strip()]
+
+counter = Counter(names)
+allCandidates = max(counter, key=counter.get)
+print(allCandidates)
+------------------------------
+QUESTION ----------------
+Give a dictionary with value lists, sort the keys by summation of values in value list. Input : test_dict = {‘Gfg’ : [6, 7, 4], ‘best’ : [7, 6, 5]}Output : {‘Gfg’: 17, ‘best’: 18}Explanation : Sorted by sum, and replaced. Input : test_dict = {‘Gfg’ : [8,8], ‘best’ : [5,5]}Output : {‘best’: 10, ‘Gfg’: 16}Explanation : Sorted by sum, and replaced. Sample Input:2Gfg 6 7 4Best 7 6 5Sample OutputGfg 17Best 18
+------------------ANSWER
+from operator import itemgetter
+
+inputs = []
+for i in range(int(input())):
+    key, *value = input().split()
+    value = map(int, value)
+    total = sum(value)
+    inputs += [{"value" : key, "total": total}]
+
+inputs = sorted(inputs, key=itemgetter("total"))
+for i in inputs:
+    print(i["value"], i["total"])
+------------------------------
