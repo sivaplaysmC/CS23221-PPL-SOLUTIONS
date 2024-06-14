@@ -1,0 +1,122 @@
+resource url?
+QUESTION ----------------
+Write a program to find the sum of the
+series 1 +11 + 111 + 1111 + . . . + n terms (n will be given as input from the
+user and sum will be the output)
+Sample Test Cases
+Test Case 1      Input
+4          Output
+1234 Test Case 2
+Input 6
+Output 123456
+------------------ANSWER
+n = int(input())
+def getSeries(n):
+    string = '1'
+    for i in range(n):
+        yield int(string)
+        string += '1'
+
+print(sum(getSeries(n)))
+------------------------------
+QUESTION ----------------
+Write
+a program that finds whether the given number N is Prime or not.
+------------------ANSWER
+def isPrime(n):
+    for i in range(2, n):
+        if n % 2 == 0:
+            return 1
+    return 2
+
+print(isPrime(int(input())))
+------------------------------
+QUESTION ----------------
+Write a program to find the count of unique
+digits in a given number N. The number will be passed to the program as an
+input of type int.
+------------------ANSWER
+print(len(set(input())))
+------------------------------
+QUESTION ----------------
+Write a program to return the nth number in the fibonacci
+series.
+The value of N will be passed to the program as
+input.
+NOTE: Fibonacci series looks like –
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, . . . and so
+on.
+i.e. Fibonacci series starts with 0 and 1, and
+continues generating the next number as the sum of the previous two numbers.
+• first Fibonacci number is 0,
+• second Fibonacci number is 1, 
+• third Fibonacci number is 1, 
+• fourth Fibonacci number is 2,
+• fifth Fibonacci number is 3, 
+• sixth Fibonacci number is 5,
+• seventh Fibonacci number is 8, and so on.
+------------------ANSWER
+def fib(n):
+    x = 0
+    y = 1
+    z = 1
+    for i in range(n - 1):
+        x = y
+        y = z
+        z = z + x
+    return x
+print(fib(int(input())))
+------------------------------
+QUESTION ----------------
+Write a program to find the count of non-repeated
+digits in a given number N. The number will be passed to the program as an
+input of type int.
+------------------ANSWER
+num = input()
+nonRepeated = [i for i in num if num.count(i) == 1]
+print(len(nonRepeated))
+------------------------------
+QUESTION ----------------
+Given a positive integer N, check whether it can be represented as
+a product of single digit numbers.
+------------------ANSWER
+if int(input()) in set([i * j for i in range(9) for j in range(9)]):
+    print("Yes")
+else:
+    print("No")
+------------------------------
+QUESTION ----------------
+Given an integer N, check whether N the given number can be made a perfect square after adding 1 to it.
+------------------ANSWER
+num = int(input())
+plusOne = num + 1
+if int(int(plusOne ** 0.5) == plusOne ** 0.5):
+    print("Yes")
+else:
+    print("No")
+------------------------------
+QUESTION ----------------
+Given a number N, find the next perfect square greater than N.
+------------------ANSWER
+n =  int(input())
+closest = int((n ** 0.5))
+print((closest + 1) ** 2)
+------------------------------
+QUESTION ----------------
+Determine the factors of a number (i.e., all positive integer values that evenly divide into a number).
+------------------ANSWER
+num = int(input())
+factors = (i for i in range(1, num + 1) if num % i == 0 )
+for i in factors:
+    print(i, end = " ")
+------------------------------
+QUESTION ----------------
+A Number is said to be Disarium number when the sum of its digit raised to the power of their respective positions becomes equal to the number itself. Write a program to print number is Disarium or not.
+------------------ANSWER
+num = input()
+raised = (int(char) ** (i + 1) for i, char in enumerate(num) )
+if sum(raised) == int(num):
+    print("Yes")
+else:
+    print("No")
+------------------------------
