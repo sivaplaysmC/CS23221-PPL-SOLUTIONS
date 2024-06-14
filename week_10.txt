@@ -1,0 +1,108 @@
+resource url?
+QUESTION ----------------
+Given an list, find peak element in it. A peak element is an element that is greater than its neighbors.
+------------------ANSWER
+n = int(input())
+
+nums = [float("-inf")] + list(map(int, input().split())) + [float("-inf")]
+
+# print(nums)
+
+for i in range(1,n + 1):
+    if nums[i - 1] <= nums[i] >= nums[i+1]:
+        print(nums[i], end =" ")
+------------------------------
+QUESTION ----------------
+Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in wrong order. You read an list of numbers. You need to arrange the elements in ascending order and print the result. The sorting should be done using bubble sort.
+------------------ANSWER
+n = int(input())
+arr = list(map(int, input().split()))
+
+
+for i in range(n-1):
+    for j in range(0, n-i-1):
+        if arr[j] > arr[j + 1]:
+            arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+print(*arr)
+------------------------------
+QUESTION ----------------
+Write a Python program to sort a list of elements using the merge sort algorithm.
+------------------ANSWER
+def merge(arr, l, m, r):
+    n1 = m - l + 1
+    n2 = r - m
+    L = [0] * (n1)
+    R = [0] * (n2)
+    for i in range(0, n1):
+        L[i] = arr[l + i]
+
+    for j in range(0, n2):
+        R[j] = arr[m + 1 + j]
+    i = 0
+    j = 0
+    k = l
+    while i < n1 and j < n2:
+        if L[i] <= R[j]:
+            arr[k] = L[i]
+            i += 1
+        else:
+            arr[k] = R[j]
+            j += 1
+        k += 1
+    while i < n1:
+        arr[k] = L[i]
+        i += 1
+        k += 1
+    while j < n2:
+        arr[k] = R[j]
+        j += 1
+        k += 1
+
+
+def mergeSort(arr, l, r):
+    if l < r:
+        m = l + (r - l) // 2
+        mergeSort(arr, l, m)
+        mergeSort(arr, m + 1, r)
+        merge(arr, l, m, r)
+
+
+n = int(input())
+nums = list(map(int, input().split()))
+mergeSort(nums, 0, n - 1)
+print(*nums)
+------------------------------
+QUESTION ----------------
+Given an listof integers, sort the array in ascending order using the Bubble Sort algorithm above. Once sorted, print the following three lines:
+------------------ANSWER
+n = int(input())
+arr = list(map(int, input().split()))
+
+numSwaps = 0
+
+for i in range(n-1):
+    for j in range(0, n-i-1):
+        if arr[j] > arr[j + 1]:
+            arr[j], arr[j + 1] = arr[j + 1], arr[j]
+            numSwaps += 1
+
+print(f"List is sorted in {numSwaps} swaps.")
+print(f"First Element: {arr[0]}")
+print(f"Last Element: {arr[-1]}")
+------------------------------
+QUESTION ----------------
+An list contains N numbers and you want to determine whether two of the numbers sum to a given number K. For example, if the input is 8, 4, 1, 6 and K is 10, the answer is yes (4 and 6). A number may be used twice.Input FormatThe first line contains a single integer n , the length of listThe second line contains n space-separated integers, list[i].The third line contains integer k.Output FormatPrint Yes or No.Sample Input70 1 2 4 6 5 3 1 Sample OutputYes
+------------------ANSWER
+n = int(input())
+nums = list(map(int, input().split()))
+k = int(input())
+
+for i in range(n):
+    if k - nums[i] in nums[:i] + nums[i+1:]:
+        print("Yes")
+        # print(nums[i], k - nums[i])
+        break
+else:
+    print("No")
+------------------------------
