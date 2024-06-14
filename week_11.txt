@@ -1,0 +1,64 @@
+resource url?
+QUESTION ----------------
+Write a Python program that performs division and modulo operations on two numbers provided by the user. Handle division by zero and non-numeric inputs.
+------------------ANSWER
+try:
+    n1, n2 = int(input()), int(input())
+
+    print(f"Division result: {n1 / n2}")
+    print(f"Modulo result: {n1 % n2}")
+except ZeroDivisionError:
+    print("Error: Cannot divide or modulo by zero.")
+except ValueError:
+    print("Error: Non-numeric input provided.")
+------------------------------
+QUESTION ----------------
+Develop a Python program that safely performs division between two numbers provided by the user. Handle exceptions like division by zero and non-numeric inputs.
+------------------ANSWER
+try:
+    n1, n2 = (float(input())), (float(input()))
+    output = n1 / n2
+    print(output)
+except ZeroDivisionError as e:
+    print("Error: Cannot divide or modulo by zero.")
+except ValueError as e:
+    print("Error: Non-numeric input provided.")
+------------------------------
+QUESTION ----------------
+Problem Description:
+------------------ANSWER
+try:
+    num = float(input())
+    if num < 0:
+        print("Error: Cannot calculate the square root of a negative number.")
+    else:
+        print(f"The square root of {num} is {num ** 0.5:.2f}")
+except Exception as e:
+    print("Error:", str(e).partition(":")[0])
+------------------------------
+QUESTION ----------------
+Problem Description:
+------------------ANSWER
+try:
+    num = input()
+    num = int(num)
+    if num not in range(1,101):
+        print("Error: Number out of allowed range")
+    else:
+        print("Valid input.")
+except Exception as e:
+    print("Error: invalid literal for int()")
+------------------------------
+QUESTION ----------------
+Problem Description:
+------------------ANSWER
+try:
+    age = int(input())
+except Exception as e:
+    print("Error: Please enter a valid age.")
+else:
+    if age > 0:
+        print("You are 25 years old.")
+    else:
+        print("Error: Please enter a valid age.")
+------------------------------
