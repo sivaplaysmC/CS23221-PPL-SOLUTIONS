@@ -1,0 +1,80 @@
+resource url?
+QUESTION ----------------
+Given an integer n, print true if it is a power of two. Otherwise, print false.
+------------------ANSWER
+from math import log2
+
+n = int(input())
+print(int(log2(n)) == log2(n))
+------------------------------
+QUESTION ----------------
+Background:
+------------------ANSWER
+from collections import defaultdict as d
+
+mapping = d(lambda : [])
+
+while True:
+    try:
+        string = input()
+    except EOFError:
+        break
+    else:
+        row = list(map(str.strip, string.split(',')))
+        mapping[row[1]] +=  [row[0]]
+
+for (k,v) in mapping.items():
+    print(f"{k}: {', '.join(v)}")
+------------------------------
+QUESTION ----------------
+As a software engineer at SocialLink, a leading social networking application, you are tasked with developing a new feature designed to enhance user interaction and engagement. The company aims to introduce a system where users can form connections based on shared interests and activities. One of the feature's components involves analyzing pairs of users based on the activities they've participated in, specifically looking at the numerical difference in the number of activities each user has participated in.
+------------------ANSWER
+n = int(input())
+nums = list(map(int, input().split()))
+k = int(input())
+
+pairs = list()
+
+
+for idx, i in enumerate(nums):
+    for jdx, j in enumerate(nums[idx + 1:]):
+        if abs(j - i) == k:
+            # print((i,j))
+            pairs.append((i, j))
+
+# print(pairs)
+print(len(pairs))
+------------------------------
+QUESTION ----------------
+Background:
+------------------ANSWER
+numShoes = int(input())
+shoes = list(map(int, input().split()))
+numCustomers = int(input())
+
+earning = 0
+
+for _ in range(numCustomers):
+    size, price = list(map(int, input().split()))
+    if size in shoes:
+        shoes.remove(size)
+        earning += price
+
+print(earning)
+------------------------------
+QUESTION ----------------
+Background:
+------------------ANSWER
+numRecords = int(input())
+
+
+avg = 0
+
+if numRecords != 0:
+    correctIdx = input().split().index("MARKS")
+    
+    total = sum( (int(input().split()[correctIdx]) for _ in range(numRecords)) )
+    avg = total / numRecords
+
+print(f"{avg:.2f}")
+------------------------------
